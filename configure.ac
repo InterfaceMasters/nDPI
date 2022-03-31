@@ -69,6 +69,10 @@ if test -d ".git" || test -f ".git" ; then :
      B=`git log src/include/ndpi_protocol_ids.h|wc -l`
      C=`git log src/include/ndpi_api.h.in|wc -l`
      NDPI_API_VERSION=$((A+B+C))
+     # imt uses binary version of pf_ring_ft and cannot change it.
+     # imt uses ndpi with additional changes that touch protocol ids.
+     # we hard code here api version for 4.2-stable ndpi.
+     NDPI_API_VERSION=5716
 else
      GIT_RELEASE="${PACKAGE_VERSION}"
      GIT_DATE=`date -u -r CHANGELOG.md`
